@@ -57,43 +57,39 @@ public class Controller {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
     }
 
-    //<?> http response
     @DeleteMapping("/delete/{id}")
     @PreAuthorize(value = "hasAuthority('write')")
-    public ResponseEntity<?> deleteUser(@PathVariable int id) {
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    //<?> http response
     @PatchMapping("/ban/{id}")
     @PreAuthorize(value = "hasAuthority('write')")
-    public ResponseEntity<?> banUser(@PathVariable int id) {
+    public ResponseEntity<HttpStatus> banUser(@PathVariable int id) {
         userService.banUser(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    //<?> http response
     @PatchMapping("/unban/{id}")
     @PreAuthorize(value = "hasAuthority('write')")
-    public ResponseEntity<?> unbanUser(@PathVariable int id) {
+    public ResponseEntity<HttpStatus> unbanUser(@PathVariable int id) {
         userService.unbanUser(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    //<?> http response
     @PatchMapping("/makeAdmin/{id}")
     @PreAuthorize(value = "hasAuthority('write')")
-    public ResponseEntity<?> changeAuthorityToAdmin(@PathVariable int id) {
+    public ResponseEntity<HttpStatus> changeAuthorityToAdmin(@PathVariable int id) {
         userService.changeAuthorityToAdmin(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     //<?> http response
     @PatchMapping("/makeUser/{id}")
     @PreAuthorize(value = "hasAuthority('write')")
-    public ResponseEntity<?> changeAuthorityToUser(@PathVariable int id) {
+    public ResponseEntity<HttpStatus> changeAuthorityToUser(@PathVariable int id) {
         userService.changeAuthorityToUser(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 }
