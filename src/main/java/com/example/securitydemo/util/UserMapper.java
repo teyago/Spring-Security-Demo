@@ -6,6 +6,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.factory.Mappers;
 
+/**
+ * @author Goncharov Aleksandr
+ */
 @Mapper(nullValueCheckStrategy = NullValueCheckStrategy.ON_IMPLICIT_CONVERSION)
 public interface UserMapper {
 

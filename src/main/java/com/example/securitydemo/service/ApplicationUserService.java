@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 
+/**
+ * @author Goncharov Aleksandr
+ */
 @Service
 public interface ApplicationUserService {
     User findById(int id);

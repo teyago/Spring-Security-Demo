@@ -4,6 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * @author Goncharov Aleksandr
+ */
 @Data
 @Entity
 @Table(name = "users")
