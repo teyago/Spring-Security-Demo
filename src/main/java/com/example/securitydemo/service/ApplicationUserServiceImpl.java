@@ -30,12 +30,12 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
 
     @Override
     public User findById(int id) {
-        return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("sad"));
+        return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     @Override
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("sad"));
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     @Override
@@ -54,28 +54,28 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     @Override
     @Transactional
     public void banUser(int id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("sad"));
+        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
         user.setStatus(Status.BANNED);
     }
 
     @Override
     @Transactional
     public void unbanUser(int id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("sad"));
+        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
         user.setStatus(Status.ACTIVE);
     }
 
     @Override
     @Transactional
     public void changeAuthorityToAdmin(int id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("sad"));
+        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
         user.setRole(Role.ADMIN);
     }
 
     @Override
     @Transactional
     public void changeAuthorityToUser(int id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("sad"));
+        User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
         user.setRole(Role.USER);
     }
 
@@ -84,7 +84,7 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     public void update(Principal principal, UserDTO userDTO) {
 
         User user = userRepository.findByUsername(principal.getName())
-                .orElseThrow(() -> new UsernameNotFoundException("sad"));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         if (userDTO.getUsername() != null) {
             user.setUsername(userDTO.getUsername());

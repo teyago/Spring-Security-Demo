@@ -22,7 +22,7 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/info/{id}")
     @PreAuthorize(value = "hasAuthority('write')")
     public ResponseEntity<?> showUserInfo(@PathVariable int id) {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
