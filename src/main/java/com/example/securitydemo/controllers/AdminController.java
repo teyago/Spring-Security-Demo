@@ -65,7 +65,7 @@ public class AdminController {
     }
 
     @PatchMapping("/edit/{id}")
-    @PreAuthorize(value = "hasAuthority('read')")
+    @PreAuthorize(value = "hasAuthority('write')")
     public ResponseEntity<?> edit(@RequestBody UserDTO userDTO, @PathVariable int id) {
 
         userService.update(id, userDTO);

@@ -85,7 +85,6 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         updateUser(userDTO, user);
-
     }
 
     @Override
