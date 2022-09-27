@@ -1,5 +1,6 @@
 package com.example.securitydemo.controllers;
 
+import com.example.securitydemo.dto.UserDTO;
 import com.example.securitydemo.service.ApplicationUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -61,6 +62,15 @@ public class AdminController {
     public ResponseEntity<HttpStatus> changeAuthorityToUser(@PathVariable int id) {
         userService.changeAuthorityToUser(id);
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PatchMapping("/edit/{id}")
+    @PreAuthorize(value = "hasAuthority('read')")
+    public ResponseEntity<?> edit(@RequestBody UserDTO userDTO, @PathVariable int id) {
+
+        userService.update(id, userDTO);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

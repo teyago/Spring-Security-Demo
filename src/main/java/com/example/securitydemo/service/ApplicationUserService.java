@@ -28,4 +28,7 @@ public interface ApplicationUserService {
     void changeAuthorityToUser(int id);
 
     void update(Principal principal, UserDTO userDTO);
+
+    void update(int id, UserDTO userDTO);
+
 }

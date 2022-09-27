@@ -80,12 +80,24 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     }
 
     @Override
-    @Transactional
     public void update(Principal principal, UserDTO userDTO) {
-
         User user = userRepository.findByUsername(principal.getName())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
+        updateUser(userDTO, user);
+
+    }
+
+    @Override
+    public void update(int id, UserDTO userDTO) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        updateUser(userDTO, user);
+    }
+
+    @Transactional
+    public void updateUser(UserDTO userDTO, User user) {
         if (userDTO.getUsername() != null) {
             user.setUsername(userDTO.getUsername());
         }
@@ -95,7 +107,6 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
         if (userDTO.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         }
-
     }
 
     @Transactional
