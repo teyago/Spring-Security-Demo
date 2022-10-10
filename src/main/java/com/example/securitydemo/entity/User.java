@@ -9,14 +9,13 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-@Table(name = "users")
+@Table(name = "user_table")
 public class User {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    // сделать юник и нотналл как и большую часть полей
     @Column(name = "username")
     private String username;
 

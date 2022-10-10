@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
  * @author Goncharov Aleksandr
  */
 @RestController
-@RequestMapping("/adminpanel")
 public class AdminController {
 
     private final ApplicationUserService userService;
@@ -50,14 +49,14 @@ public class AdminController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PatchMapping("/makeAdmin/{id}")
+    @PatchMapping("/make-admin/{id}")
     @PreAuthorize(value = "hasAuthority('write')")
     public ResponseEntity<HttpStatus> changeAuthorityToAdmin(@PathVariable int id) {
         userService.changeAuthorityToAdmin(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PatchMapping("/makeUser/{id}")
+    @PatchMapping("/make-user/{id}")
     @PreAuthorize(value = "hasAuthority('write')")
     public ResponseEntity<HttpStatus> changeAuthorityToUser(@PathVariable int id) {
         userService.changeAuthorityToUser(id);
@@ -70,7 +69,7 @@ public class AdminController {
 
         userService.update(id, userDTO);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
 }

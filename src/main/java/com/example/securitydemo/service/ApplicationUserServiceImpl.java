@@ -95,7 +95,6 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
         updateUser(userDTO, user);
     }
 
-    @Transactional
     public void updateUser(UserDTO userDTO, User user) {
         if (userDTO.getUsername() != null) {
             user.setUsername(userDTO.getUsername());
@@ -106,6 +105,7 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
         if (userDTO.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         }
+        saveUser(user);
     }
 
     @Transactional
